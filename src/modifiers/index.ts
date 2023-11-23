@@ -58,13 +58,9 @@ export function trusted<T extends Event, U extends HTMLElement>(handler: EventHa
 
 /** Remove the handler after the first time it runs */
 export function once<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): (this: U, event: T) => void {
-	let hasBeenCalled = false;
-
 	return function (this: U, event: T): void {
-		if (!hasBeenCalled) {
-			hasBeenCalled = true;
-			handler.call(this, event);
-		}
+		handler.call(this, event);
+		handler = () => {};
 	};
 }
 
@@ -85,7 +81,7 @@ export function withModifiers<T extends Event, U extends HTMLElement>(
 	modifiers: WrappableModifiers,
 ): (this: U, event: T) => void {
 	const enabledModifiers = objectToEntries(modifiers).filter(([key, value]) => value);
-	const modifierFunctions = enabledModifiers.map(([key]) => modifierFunctionsByKey[key as WrappableModifierKey]);
+	const modifierFunctions = enabledModifiers.map(([key]) => modifierFunctionsByKey[key]);
 
 	return pipe<EventHandler<T>>(handler, ...modifierFunctions);
 }
