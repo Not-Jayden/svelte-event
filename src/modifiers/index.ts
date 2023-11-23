@@ -80,10 +80,9 @@ const modifierFunctionsByKey = {
 	once,
 } satisfies Record<string, (handler: EventHandler) => EventHandler>;
 
-
 export function withModifiers<T extends Event, U extends HTMLElement>(
 	handler: EventHandler<T>,
-	modifiers: Modifiers,
+	modifiers: WrappableModifiers,
 ): (this: U, event: T) => void {
 	const enabledModifiers = objectToEntries(modifiers).filter(([key, value]) => value);
 	const modifierFunctions = enabledModifiers.map(([key]) => modifierFunctionsByKey[key as WrappableModifierKey]);
