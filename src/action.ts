@@ -1,6 +1,6 @@
 import type { Modifiers } from './types';
 
-import { objectToEntries } from './utils/objectToEntries';
+import { objectToEntries } from './utils/objectToEntries.js';
 
 type EventType = keyof HTMLElementEventMap;
 type CustomEventType = string & {};

@@ -1,8 +1,8 @@
 // Modifier descriptions courtesy of Svelte docs: https://svelte.dev/docs/element-directives#on-eventname
 
 import type { Modifiers } from '../types';
-import { objectToEntries } from '../utils/objectToEntries';
-import { pipe } from '../utils/pipe';
+import { objectToEntries } from '../utils/objectToEntries.js';
+import { pipe } from '../utils/pipe.js';
 
 type EventHandler<T extends Event = Event> = (event: T) => void;
 
