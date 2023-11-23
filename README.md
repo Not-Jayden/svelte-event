@@ -1,6 +1,6 @@
 # ⚡️ svelte-event
 
-svelte-event provides a set of wrapper functions for adding modifiers to event handlers and a versatile event action for comprehensive event listener management in Svelte.
+svelte-event provides a set of wrapper functions for adding modifiers to event handlers and a versatile `event` action for comprehensive event listener management in Svelte.
 
 This package is primarily intended to address [the upcoming changes to events in Svelte 5](https://svelte-5-preview.vercel.app/docs/event-handlers), though is entirely compatible with Svelte 3 and 4 as well.
 
@@ -76,6 +76,8 @@ You can provide detailed configuration for event listeners, including multiple h
 - `self`
 - `trusted`
 - `once`
+
+Note: `passive` requires use of the `event` action, as it requires access to the event listener options which is not possible using wrapper functions.
 
 #### Using Wrapper Functions
 Apply modifiers directly to event handlers:
