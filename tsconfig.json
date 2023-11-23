@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"esModuleInterop": true,
+		"noUncheckedIndexedAccess": true,
+		"skipLibCheck": false,
+		"declaration": true,
+		"verbatimModuleSyntax": true,
+		"moduleResolution": "node",
+		"lib": ["esnext", "dom"],
+		"target": "esnext",
+		"module": "esnext",
+		"outDir": "dist"
+	},
+	"include": ["src/**/*"]
+}
