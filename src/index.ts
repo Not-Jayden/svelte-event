@@ -9,5 +9,4 @@ import {
 	withModifiers,
 } from './modifiers';
 
-export { event } from './action';
-export { once, preventDefault, self, stopImmediatePropagation, stopPropagation, trusted, withModifiers };
+export { event, once, preventDefault, self, stopImmediatePropagation, stopPropagation, trusted, withModifiers };
