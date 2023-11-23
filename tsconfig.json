@@ -11,6 +11,5 @@
 		"target": "esnext",
 		"module": "esnext",
 		"outDir": "dist"
-	},
-	"include": ["src/**/*"]
+	}
 }
