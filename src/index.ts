@@ -1,4 +1,4 @@
-import { event } from './action';
+import { event } from './action.js';
 
 import {
 	once,
@@ -8,6 +8,6 @@ import {
 	stopPropagation,
 	trusted,
 	withModifiers,
-} from './modifiers';
+} from './modifiers/index.js';
 
 export { event, once, preventDefault, self, stopImmediatePropagation, stopPropagation, trusted, withModifiers };
