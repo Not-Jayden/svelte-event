@@ -1,6 +1,6 @@
-export { event } from './action';
+import { event } from './action';
 
-export {
+import {
 	once,
 	preventDefault,
 	self,
@@ -9,3 +9,5 @@ export {
 	trusted,
 	withModifiers,
 } from './modifiers';
+
+export { event, once, preventDefault, self, stopImmediatePropagation, stopPropagation, trusted, withModifiers };
