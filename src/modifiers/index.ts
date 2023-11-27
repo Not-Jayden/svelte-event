@@ -7,9 +7,7 @@ import { pipe } from '../utils/pipe.js';
 type EventHandler<T extends Event = Event> = (event: T) => void;
 
 /** Calls `event.preventDefault()` before running the handler */
-export function preventDefault<T extends Event, U extends HTMLElement>(
-	handler: EventHandler<T>,
-): (this: U, event: T) => void {
+export function preventDefault<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): EventHandler<T> {
 	return function (this: U, event: T) {
 		event.preventDefault();
 		handler.call(this, event);
@@ -17,9 +15,7 @@ export function preventDefault<T extends Event, U extends HTMLElement>(
 }
 
 /** Calls `event.stopPropagation()`, preventing the event reaching the next element */
-export function stopPropagation<T extends Event, U extends HTMLElement>(
-	handler: EventHandler<T>,
-): (this: U, event: T) => void {
+export function stopPropagation<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): EventHandler<T> {
 	return function (this: U, event: T): void {
 		event.stopPropagation();
 		handler.call(this, event);
@@ -29,7 +25,7 @@ export function stopPropagation<T extends Event, U extends HTMLElement>(
 /** Calls `event.stopImmediatePropagation()`, preventing other listeners of the same event from being fired. */
 export function stopImmediatePropagation<T extends Event, U extends HTMLElement>(
 	handler: EventHandler<T>,
-): (this: U, event: T) => void {
+): EventHandler<T> {
 	return function (this: U, event: T): void {
 		event.stopImmediatePropagation();
 		handler.call(this, event);
@@ -37,7 +33,7 @@ export function stopImmediatePropagation<T extends Event, U extends HTMLElement>
 }
 
 /** Only triggers handler if the `event.target` is the element itself */
-export function self<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): (this: U, event: T) => void {
+export function self<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): EventHandler<T> {
 	return function (this: U, event: T): void {
 		if (event.target !== event.currentTarget) {
 			return;
@@ -47,7 +43,7 @@ export function self<T extends Event, U extends HTMLElement>(handler: EventHandl
 }
 
 /** Only trigger handler if event.isTrusted is true. I.e. if the event is triggered by a user action. */
-export function trusted<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): (this: U, event: T) => void {
+export function trusted<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): EventHandler<T> {
 	return function (this: U, event: T): void {
 		if (!event.isTrusted) {
 			return;
@@ -57,10 +53,16 @@ export function trusted<T extends Event, U extends HTMLElement>(handler: EventHa
 }
 
 /** Remove the handler after the first time it runs */
-export function once<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): (this: U, event: T) => void {
+export function once<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): EventHandler<T> {
+	let hasBeenCalled = false;
+
 	return function (this: U, event: T): void {
+		if (hasBeenCalled) {
+			return;
+		}
+
 		handler.call(this, event);
-		handler = () => {};
+		hasBeenCalled = true;
 	};
 }
 
@@ -76,10 +78,10 @@ const modifierFunctionsByKey = {
 	once,
 } satisfies Record<string, (handler: EventHandler) => EventHandler>;
 
-export function withModifiers<T extends Event, U extends HTMLElement>(
+export function withModifiers<T extends Event>(
 	handler: EventHandler<T>,
 	modifiers: WrappableModifiers,
-): (this: U, event: T) => void {
+): (event: T) => void {
 	const enabledModifiers = objectToEntries(modifiers).filter(([key, value]) => value);
 	const modifierFunctions = enabledModifiers.map(([key]) => modifierFunctionsByKey[key]);
 
