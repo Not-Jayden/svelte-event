@@ -37,7 +37,7 @@ The `event` action in `svelte-event` allows you to attach event listeners to DOM
   }
 </script>
 
-<div use:event={{ click: handleClick }}></div>
+<div use:event={{ click: handleClick }} />
 ```
 
 #### Advanced Configuration
@@ -46,25 +46,25 @@ You can provide detailed configuration for event listeners, including multiple h
 - **Multiple Handlers:**
   Attach several handlers to the same event:
   ```svelte
-  <div use:event={{ click: { handlers: [handleClick1, handleClick2] } }}></div>
+  <div use:event={{ click: { handlers: [handleClick1, handleClick2] } }} />
   ```
 
 - **Event Modifiers:**
   Customize event behavior with modifiers such as `preventDefault`, `stopPropagation`, `passive`, and more:
   ```svelte
-  <div use:event={{ click: { handler: handleClick, modifiers: { preventDefault: true } } }}></div>
+  <div use:event={{ click: { handler: handleClick, modifiers: { preventDefault: true } } }} />
   ```
 
 - **Performance Optimization with `passive`:**
   Improve scrolling performance for touch and wheel events:
   ```svelte
-  <div use:event={{ wheel: { modifiers: { passive: true } } }}></div>
+  <div use:event={{ wheel: { modifiers: { passive: true } } }} />
   ```
 
 - **Capture Phase with `capture`:**
   Execute event handler during the capture phase:
   ```svelte
-  <div use:event={{ click: { modifiers: { capture: true } } }}></div>
+  <div use:event={{ click: { modifiers: { capture: true } } }} />
   ```
 
 ### Modifier Wrapper Functions
@@ -91,7 +91,7 @@ Apply modifiers directly to event handlers:
   }
 </script>
 
-<div onclick={once(preventDefault(handleClick))}></div>
+<div onclick={once(preventDefault(handleClick))} />
 ```
 
 #### Combining Modifiers with `withModifiers`
@@ -111,7 +111,7 @@ Use `withModifiers` to apply multiple modifiers using a configuration object:
   });
 </script>
 
-<div onclick={modifiedHandler}></div>
+<div onclick={modifiedHandler} />
 ```
 
 ## 📜 License
