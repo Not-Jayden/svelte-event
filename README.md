@@ -117,6 +117,8 @@ The package also provides `left`, `right`, and `middle` modifiers for mouse even
 
 <div onclick={left(handleClick)} />
 ```
+You can also specify the set of modifier keys (`altKey`, `ctrlKey`, `metaKey`, `shiftKey`) that must be pressed for the event handler to execute, as well as the `exact` modifier in the same way as the `key` modifier.
+
 
 #### Compose Function
 The `compose` function allows you to combine multiple wrapper functions into a single function:
