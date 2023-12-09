@@ -83,7 +83,7 @@ The `key` modifier allows you to specify a key that must be pressed for the even
   }
 </script>
 
-<div on:keydown={key(handleKeydown, 'Enter')} />
+<div onkeydown={key(handleKeydown, 'Enter')} />
 ```
 
 You can also specify the set of modifier keys (`altKey`, `ctrlKey`, `metaKey`, `shiftKey`) that must be pressed for the event handler to execute:
@@ -97,7 +97,7 @@ You can also specify the set of modifier keys (`altKey`, `ctrlKey`, `metaKey`, `
   }
 </script>
 
-<div on:keydown={key(handleKeydown, 'Enter', { ctrlKey: true, exact: true })} />
+<div onkeydown={key(handleKeydown, 'Enter', { ctrlKey: true, exact: true })} />
 ```
 
 If the `exact` modifier is set to `true`, then the event handler will only execute if the specified key is pressed and no other modifier keys are pressed.
@@ -115,7 +115,7 @@ The package also provides `left`, `right`, and `middle` modifiers for mouse even
   }
 </script>
 
-<div on:click={left(handleClick)} />
+<div onclick={left(handleClick)} />
 ```
 
 ### Compose Function
