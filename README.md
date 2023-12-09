@@ -24,51 +24,8 @@ bun add svelte-event
 
 ## 💡 Usage
 
-### Event Action
-The `event` action in `svelte-event` allows you to attach event listeners to DOM elements, enabling detailed control through various modifiers.
-
-#### Basic Example
-```svelte
-<script>
-  import { event } from 'svelte-event';
-
-  function handleClick() {
-    // Click event logic
-  }
-</script>
-
-<div use:event={{ click: handleClick }} />
-```
-
-#### Advanced Configuration
-You can provide detailed configuration for event listeners, including multiple handlers, various modifiers, and specific event phases.
-
-- **Multiple Handlers:**
-  Attach several handlers to the same event:
-  ```svelte
-  <div use:event={{ click: { handlers: [handleClick1, handleClick2] } }} />
-  ```
-
-- **Event Modifiers:**
-  Customize event behavior with modifiers such as `preventDefault`, `stopPropagation`, `passive`, and more:
-  ```svelte
-  <div use:event={{ click: { handler: handleClick, modifiers: { preventDefault: true } } }} />
-  ```
-
-- **Performance Optimization with `passive`:**
-  Improve scrolling performance for touch and wheel events:
-  ```svelte
-  <div use:event={{ wheel: { modifiers: { passive: true } } }} />
-  ```
-
-- **Capture Phase with `capture`:**
-  Execute event handler during the capture phase:
-  ```svelte
-  <div use:event={{ click: { modifiers: { capture: true } } }} />
-  ```
-
 ### Modifier Wrapper Functions
-`event` provides several wrapper functions for modifying event behavior:
+`svelte-event` provides several wrapper functions for modifying event behavior:
 
 - `preventDefault`
 - `stopPropagation`
@@ -175,6 +132,49 @@ const handler = compose(
 // Use the composed handler in your Svelte component
 <div onclick={handler} />
 ```
+
+### Event Action
+The `event` action in `svelte-event` allows you to attach event listeners to DOM elements, enabling detailed control through various modifiers.
+
+#### Basic Example
+```svelte
+<script>
+  import { event } from 'svelte-event';
+
+  function handleClick() {
+    // Click event logic
+  }
+</script>
+
+<div use:event={{ click: handleClick }} />
+```
+
+#### Advanced Configuration
+You can provide detailed configuration for event listeners, including multiple handlers, various modifiers, and specific event phases.
+
+- **Multiple Handlers:**
+  Attach several handlers to the same event:
+  ```svelte
+  <div use:event={{ click: { handlers: [handleClick1, handleClick2] } }} />
+  ```
+
+- **Event Modifiers:**
+  Customize event behavior with modifiers such as `preventDefault`, `stopPropagation`, `passive`, and more:
+  ```svelte
+  <div use:event={{ click: { handler: handleClick, modifiers: { preventDefault: true } } }} />
+  ```
+
+- **Performance Optimization with `passive`:**
+  Improve scrolling performance for touch and wheel events:
+  ```svelte
+  <div use:event={{ wheel: { modifiers: { passive: true } } }} />
+  ```
+
+- **Capture Phase with `capture`:**
+  Execute event handler during the capture phase:
+  ```svelte
+  <div use:event={{ click: { modifiers: { capture: true } } }} />
+  ```
 
 ## 📜 License
 `svelte-event` is open source, licensed under the MIT License. For more information, see the [LICENSE](LICENSE) file.
