@@ -94,6 +94,8 @@ Apply modifiers directly to event handlers:
 <div onclick={once(preventDefault(handleClick))} />
 ```
 
+
+
 #### Combining Modifiers with `withModifiers`
 Use `withModifiers` to apply multiple modifiers using a configuration object:
 
@@ -112,6 +114,21 @@ Use `withModifiers` to apply multiple modifiers using a configuration object:
 </script>
 
 <div onclick={modifiedHandler} />
+```
+
+### Compose Function
+The `compose` function allows you to combine multiple wrapper functions into a single function:
+
+```javascript
+import { compose } from 'svelte-event';
+
+const handler = compose(
+  handler1,
+  handler2,
+);
+
+// Use the composed handler in your Svelte component
+<div onclick={handler} />
 ```
 
 ## 📜 License

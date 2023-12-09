@@ -8,3 +8,5 @@ export type Modifiers = {
 	self?: boolean;
 	trusted?: boolean;
 };
+
+export type EventHandler<T extends Event = Event> = (event: T) => void;

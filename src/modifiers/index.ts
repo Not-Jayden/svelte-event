@@ -1,10 +1,8 @@
 // Modifier descriptions courtesy of Svelte docs: https://svelte.dev/docs/element-directives#on-eventname
 
-import type { Modifiers } from '../types';
+import type { EventHandler, Modifiers } from '../types';
 import { objectToEntries } from '../utils/objectToEntries.js';
 import { pipe } from '../utils/pipe.js';
-
-type EventHandler<T extends Event = Event> = (event: T) => void;
 
 /** Calls `event.preventDefault()` before running the handler */
 export function preventDefault<T extends Event, U extends HTMLElement>(handler: EventHandler<T>): EventHandler<T> {
@@ -66,7 +64,7 @@ export function once<T extends Event, U extends HTMLElement>(handler: EventHandl
 	};
 }
 
-type WrappableModifiers = Omit<Modifiers, 'passive' | 'capture'>;
+export type WrappableModifiers = Omit<Modifiers, 'passive' | 'capture'>;
 type WrappableModifierKey = keyof WrappableModifiers;
 
 const modifierFunctionsByKey = {
@@ -78,6 +76,7 @@ const modifierFunctionsByKey = {
 	once,
 } satisfies Record<string, (handler: EventHandler) => EventHandler>;
 
+/** Wraps the handler with the modifiers specified in the second argument */
 export function withModifiers<T extends Event>(
 	handler: EventHandler<T>,
 	modifiers: WrappableModifiers,
