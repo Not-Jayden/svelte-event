@@ -9,5 +9,16 @@ import {
 	trusted,
 	withModifiers,
 } from './modifiers/index.js';
+import { compose } from './compose.js';
 
-export { event, once, preventDefault, self, stopImmediatePropagation, stopPropagation, trusted, withModifiers };
+export {
+	event,
+	once,
+	preventDefault,
+	self,
+	stopImmediatePropagation,
+	stopPropagation,
+	trusted,
+	withModifiers,
+	compose,
+};
