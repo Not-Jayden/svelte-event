@@ -118,7 +118,7 @@ The package also provides `left`, `right`, and `middle` modifiers for mouse even
 <div onclick={left(handleClick)} />
 ```
 
-### Compose Function
+#### Compose Function
 The `compose` function allows you to combine multiple wrapper functions into a single function:
 
 ```javascript
