@@ -79,23 +79,6 @@ You can provide detailed configuration for event listeners, including multiple h
 
 Note: `passive` requires use of the `event` action, as it requires access to the event listener options which is not possible using wrapper functions.
 
-#### Using Wrapper Functions
-Apply modifiers directly to event handlers:
-
-```javascript
-<script>
-  import { once, preventDefault } from 'svelte-event';
-
-  function handleClick(event) {
-    // Click event logic
-  }
-</script>
-
-<div onclick={once(preventDefault(handleClick))} />
-```
-
-
-
 #### Combining Modifiers with `withModifiers`
 Use `withModifiers` to apply multiple modifiers using a configuration object:
 
@@ -114,6 +97,69 @@ Use `withModifiers` to apply multiple modifiers using a configuration object:
 </script>
 
 <div onclick={modifiedHandler} />
+```
+
+#### Key Modifier
+The `key` modifier allows you to specify a key that must be pressed for the event handler to execute:
+
+```javascript
+<script>
+  import { key } from 'svelte-event/key';
+
+  function handleKeydown(event) {
+    // Keydown event logic
+  }
+</script>
+
+<div on:keydown={key(handleKeydown, 'Enter')} />
+```
+
+You can also specify the set of modifier keys (`altKey`, `ctrlKey`, `metaKey`, `shiftKey`) that must be pressed for the event handler to execute:
+
+```javascript
+<script>
+  import { key } from 'svelte-event/key';
+
+  function handleKeydown(event) {
+    // Keydown event logic
+  }
+</script>
+
+<div on:keydown={key(handleKeydown, 'Enter', { ctrlKey: true, exact: true })} />
+```
+
+If the `exact` modifier is set to `true`, then the event handler will only execute if the specified key is pressed and no other modifier keys are pressed.
+
+
+#### Mouse Modifiers
+The package also provides `left`, `right`, and `middle` modifiers for mouse events, which only execute the event handler if the left, right, or middle mouse button is pressed, respectively:
+
+```javascript
+<script>
+  import { left, right, middle } from 'svelte-event/mouse';
+
+  function handleClick(event) {
+    // Click event logic
+  }
+</script>
+
+<div on:click={left(handleClick)} />
+```
+
+
+#### Using Wrapper Functions
+Apply modifiers directly to event handlers:
+
+```javascript
+<script>
+  import { once, preventDefault } from 'svelte-event';
+
+  function handleClick(event) {
+    // Click event logic
+  }
+</script>
+
+<div onclick={once(preventDefault(handleClick))} />
 ```
 
 ### Compose Function

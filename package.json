@@ -13,7 +13,7 @@
 	"exports": {
 		".": "./dist/index.js",
 		"./key": "./dist/modifiers/key.js",
-		"./click": "./dist/modifiers/click.js"
+		"./mouse": "./dist/modifiers/mouse.js"
 	},
 	"license": "MIT",
 	"keywords": [
