@@ -79,6 +79,21 @@ You can provide detailed configuration for event listeners, including multiple h
 
 Note: `passive` requires use of the `event` action, as it requires access to the event listener options which is not possible using wrapper functions.
 
+#### Using Wrapper Functions
+Apply modifiers directly to event handlers:
+
+```javascript
+<script>
+  import { once, preventDefault } from 'svelte-event';
+
+  function handleClick(event) {
+    // Click event logic
+  }
+</script>
+
+<div onclick={once(preventDefault(handleClick))} />
+```
+
 #### Combining Modifiers with `withModifiers`
 Use `withModifiers` to apply multiple modifiers using a configuration object:
 
@@ -144,22 +159,6 @@ The package also provides `left`, `right`, and `middle` modifiers for mouse even
 </script>
 
 <div on:click={left(handleClick)} />
-```
-
-
-#### Using Wrapper Functions
-Apply modifiers directly to event handlers:
-
-```javascript
-<script>
-  import { once, preventDefault } from 'svelte-event';
-
-  function handleClick(event) {
-    // Click event logic
-  }
-</script>
-
-<div onclick={once(preventDefault(handleClick))} />
 ```
 
 ### Compose Function
